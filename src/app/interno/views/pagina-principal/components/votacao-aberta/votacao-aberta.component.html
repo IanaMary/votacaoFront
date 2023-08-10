@@ -1,0 +1,51 @@
+<div class="filtro">
+  <div class="box-filtro">
+    <mat-form-field appearance="outline">
+      <mat-label>Escolha o mês</mat-label>
+      <mat-select [(ngModel)]="mesAtual" (selectionChange)="atualizar()">
+        <mat-option [value]="mes" *ngFor="let mes of meses">{{mes}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="box-filtro">
+    <mat-form-field appearance="outline">
+      <mat-label>Escolha o ano</mat-label>
+      <mat-select [(ngModel)]="anoAtual" (selectionChange)="atualizar()">
+        <mat-option [value]="ano" *ngFor="let ano of anos">{{ano}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+
+<div class="box-linha" >
+  <div class="box-coluna" *ngFor="let votacao of votacoes;">
+    <div class="titulo">
+      {{votacao?.titulo}}
+    </div>
+    <mat-divider></mat-divider>
+    <div class="informacoes">
+      <span class="gasto"> Descrição:
+        <span class="valor"> {{votacao?.descricao}}</span>
+      </span>
+      <span class="gasto"> Criado por:
+        <span class="valor"> {{votacao?.criado }}</span>
+      </span>
+      <span class="gasto"> Inicio:
+        <span class="valor"> {{votacao?.dataIniico | date: 'dd/MM/yyyy'}}</span>
+      </span>
+      <span class="gasto"> Fim:
+        <span class="valor"> {{votacao?.dataFim| date: 'dd/MM/yyyy'}}</span>
+      </span>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="botoes">
+      <button *ngIf="!votacao?.votou || votacao?.multiVotos" (click)="verOuVotarcandidatos(votacao, true)" class="botao-principal">
+        VOTAR
+      </button>
+      <button *ngIf="votacao?.votou && !votacao?.multiVotos"  (click)="verOuVotarcandidatos(votacao, false)" class="botao-sencudario">
+        VER CANDIDATOS
+      </button>
+    </div>
+  </div>
+</div>
+

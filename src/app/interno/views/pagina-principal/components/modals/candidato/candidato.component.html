@@ -1,0 +1,37 @@
+<div class="box-linha box-titulo">
+  {{data?.votacao?.titulo}}
+  <button class="botao-icone">
+    <mat-icon (click)="fechar(null, false)">cancel</mat-icon>
+  </button>
+</div>
+<mat-divider></mat-divider>
+<div class="box-linha">
+  <div class="box-coluna" *ngFor="let candidato of candidatos;">
+    <span>
+      Nome: <span class="informacoes">{{candidato?.nome }}</span>
+    </span>
+    <span>
+      Número: <span class="informacoes">{{candidato?.numero }}</span>
+    </span>
+    <button *ngIf="data.votar" (click)="fechar(candidato, true)" class="botao-principal">
+      VOTAR
+    </button>
+  </div>
+  <div class="box-coluna" *ngIf="data.votar">
+    <span class="informacoes">Nenhuma das opções</span>
+    <button (click)="fechar(null, true)" class="botao-principal">
+      VOTAR
+    </button>
+  </div>
+</div>
+
+<ng-container  *ngIf="data.votar">
+  <mat-divider></mat-divider>
+  <div class="box-linha box-botao">
+    <button (click)="fechar(null, false)" class="botao-sencudario">
+      CANCELAR
+    </button>
+  </div>
+</ng-container>
+
+

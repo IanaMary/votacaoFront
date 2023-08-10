@@ -1,0 +1,48 @@
+@import '../../../../../../../styles/colores.scss';
+@import '../../../../../../../styles/styles.scss';
+
+
+.box-titulo {
+  justify-content: space-between;
+}
+
+.box-botao {
+  justify-content: flex-end;
+}
+
+.box-linha {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  color: $preto;
+  .box-coluna{
+    width: 27%;
+    height: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid  $cor-principal;
+    padding: 4px;
+    margin: 0.25rem;
+  }
+  .box-botoes{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .informacoes {
+    color: $cor-principal;
+  }
+}
+
+
+
+:host ::ng-deep .mat-radio-button {
+  margin-bottom: 0.25rem;
+}
+
+
