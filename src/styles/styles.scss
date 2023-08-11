@@ -123,6 +123,12 @@ body {
 
 
 .botao-sencudario {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-direction: row;
   background: $branco;
   color: $cor-principal;
   border: none;
@@ -133,6 +139,11 @@ body {
 
 
 .botao-principal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-direction: row;
   background: $cor-principal;
   color: $branco;
   border: none;

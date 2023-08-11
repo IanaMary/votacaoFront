@@ -1,11 +1,11 @@
 <div class="box-linha titulo-principal-modal">
   {{data.editar ? 'EDITAR VALOR' : 'ADICIONAR VALOR'}}
-  <button  class="botao-icone">
+  <button class="botao-icone">
     <mat-icon (click)="fechar(false)">cancel</mat-icon>
   </button>
 </div>
 <mat-divider></mat-divider>
-<form [formGroup]="data?.novoValorForm" >
+<form [formGroup]="data?.novoValorForm">
   <div class="box-linha">
     <div class="box-coluna box-coluna-49">
       <mat-form-field appearance="outline">
@@ -25,8 +25,8 @@
       <mat-form-field appearance="outline">
         <mat-label>Período</mat-label>
         <mat-date-range-input [rangePicker]="picker">
-          <input matStartDate formControlName="dataInicio" placeholder="Start date">
-          <input matEndDate formControlName="dataFim" placeholder="End date">
+          <input readonly matStartDate formControlName="dataInicio">
+          <input readonly matEndDate formControlName="dataFim">
         </mat-date-range-input>
         <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
@@ -34,14 +34,42 @@
       </mat-form-field>
     </div>
   </div>
+  <div class="box-linha">
+    <div class="box-coluna box-coluna-80">
+      <mat-form-field appearance="outline">
+        <mat-label>Candidato</mat-label>
+        <input (keyup)="jaExisteCandidatos()" [(ngModel)]="candidato" [ngModelOptions]="{standalone: true}" matInput>
+        <mat-icon *ngI="candidatoExistente" style="margin-right: 0.2rem;" matSuffix>error</mat-icon>
+      </mat-form-field>
+    </div>
+    <div class="box-coluna box-coluna-10">
+      <button (click)="adicionarCandidato()" [disabled]="!candidato || candidatoExistente" class="botao-principal">
+        <mat-icon>add_box</mat-icon>
+      </button>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="box-linha">
+    <div class="box-coluna titulo-secundario-modal">
+      Candidos adicionados:
+    </div>
+    <div class="box-linha box-linha-candidatos">
+      <div class="box-coluna box-coluna-49" *ngFor="let candidato of candidatos; let index = index;">
+        <button (click)="removerPilhas(index)" [disabled]="!candidato && candidatoExistente" class="botao-sencudario">
+          {{candidato}}
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
 </form>
 <mat-divider></mat-divider>
 <div class="box-linha">
   <div class="box-botoes">
-    <button (click)="fechar(false)"  class="botao-sencudario">
+    <button (click)="fechar(false)" class="botao-sencudario">
       CANCELAR
     </button>
-    <button (click)="fechar(true)" [disabled]="data.novoValorForm.invalid" class="botao-principal">
+    <button (click)="fechar(true)" [disabled]="data.novoValorForm.invalid || !candidatos.length" class="botao-principal">
       {{data.editar ? 'EDITAR' : 'ADICIONAR'}}
     </button>
   </div>

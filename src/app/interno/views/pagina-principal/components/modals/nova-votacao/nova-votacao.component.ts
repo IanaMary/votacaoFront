@@ -14,15 +14,27 @@ export class NovaVotacaoComponent {
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {}
 
-  candidatos = [{ nome: "Wagner", numero: 1, id: '1' },
-  { nome: "Luiz", numero: 2, id: '2' },
-  { nome: "Braga", numero: 3, id: '3' },
-  { nome: "Bezerra", numero: 4, id: '4' }];
-
+  candidato : string = '';
+  candidatos : Array<string> =  [];
+  candidatoExistente : boolean = false;
   valor = 0
 
  
   fechar(fechar: any){
     this.dialogRef.close({fechar, data: this.data.novoValorForm.value });
+  }
+
+  adicionarCandidato() {
+    this.candidatos.push(this.candidato);
+    this.candidato = '';
+  }
+
+  jaExisteCandidatos(){
+    this.candidatoExistente = this.candidatos.some(candidato => candidato.toLowerCase() === this.candidato.toLowerCase());
+  }
+
+  removerPilhas(index : number) {
+    this.candidatos.splice(index, 1);
+    this.candidatoExistente = this.candidatos.some(candidato => candidato === this.candidato);
   }
 }

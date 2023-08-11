@@ -24,7 +24,7 @@ export class PaginaPrincipalComponent {
         descricao: [null, [Validators.required]],
         dataInicio: [null, [Validators.required]],
         dataFim: [null, [Validators.required]],
-        candidatos: [[], [Validators.required]],
+        candidatos: [[], []],
       });
      }
 

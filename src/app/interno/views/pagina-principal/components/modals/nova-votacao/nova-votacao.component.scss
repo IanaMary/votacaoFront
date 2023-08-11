@@ -1,5 +1,11 @@
 @import '../../../../../../../styles/colores.scss';
 @import '../../../../../../../styles/styles.scss';
+
+.box-linha-candidatos {
+  max-height: 5rem;
+  overflow: auto;
+}
+
 .box-linha {
   display: flex;
   flex-direction: row;
@@ -9,14 +15,22 @@
   width: 100%;
   padding-bottom: 8px;
   padding-top: 8px;
+
   .box-coluna{
     width: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     margin-right: 0.25rem;
   }
   .box-coluna-49{
-    width:49% !important;
+    width: 49% !important;
+  }
+  .box-coluna-80{
+    width: 80% !important;
+  }
+  .box-coluna-10{
+    width: 10% !important;
   }
   .box-botoes{
     width: 100%;
@@ -32,3 +46,6 @@
 }
 
 
+.titulo-secundario-modal {
+  min-height: 2rem !important;
+}
