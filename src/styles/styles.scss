@@ -168,3 +168,16 @@ body {
 .mat-tab-group {
   width: -webkit-fill-available;
 }
+
+::ng-deep .mat-icon-button {
+  background: $cor-principal !important;
+  margin-bottom: 0.5rem;
+}
+
+::ng-deep .mat-form-field-type-mat-date-range-input .mat-form-field-infix {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 1rem;
+}

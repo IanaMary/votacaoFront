@@ -6,6 +6,7 @@ import { ModalGenericoComponent } from '../../../shared/components/modals/modal-
 import { SharedModule } from '../../../shared/shared.module';
 import { CandidatoComponent } from './components/modals/candidato/candidato.component';
 import { VotacaoAbertaComponent } from './components/votacao-aberta/votacao-aberta.component';
+import { NovaVotacaoComponent } from './components/modals/nova-votacao/nova-votacao.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { VotacaoAbertaComponent } from './components/votacao-aberta/votacao-aber
     NovoValorComponent,
     ModalGenericoComponent,
     CandidatoComponent,
+    NovaVotacaoComponent
   ],
   imports: [
     PaginaPrincipalRoutingModule,
@@ -22,7 +24,8 @@ import { VotacaoAbertaComponent } from './components/votacao-aberta/votacao-aber
   entryComponents: [
     NovoValorComponent,
     ModalGenericoComponent,
-    CandidatoComponent
+    CandidatoComponent,
+    NovaVotacaoComponent
   ],
   providers: [],
   bootstrap: []

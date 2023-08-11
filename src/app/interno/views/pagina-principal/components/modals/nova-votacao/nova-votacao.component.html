@@ -1,0 +1,48 @@
+<div class="box-linha titulo-principal-modal">
+  {{data.editar ? 'EDITAR VALOR' : 'ADICIONAR VALOR'}}
+  <button  class="botao-icone">
+    <mat-icon (click)="fechar(false)">cancel</mat-icon>
+  </button>
+</div>
+<mat-divider></mat-divider>
+<form [formGroup]="data?.novoValorForm" >
+  <div class="box-linha">
+    <div class="box-coluna box-coluna-49">
+      <mat-form-field appearance="outline">
+        <mat-label>Nome</mat-label>
+        <input [(ngModel)]="data?.novoValorForm?.value.nome" formControlName="nome" matInput>
+      </mat-form-field>
+    </div>
+    <div class="box-coluna box-coluna-49">
+      <mat-form-field appearance="outline">
+        <mat-label>Descrição</mat-label>
+        <input [(ngModel)]="data?.novoValorForm?.value.descricao" formControlName="descricao" matInput>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="box-linha">
+    <div class="box-coluna">
+      <mat-form-field appearance="outline">
+        <mat-label>Período</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input matStartDate formControlName="dataInicio" placeholder="Start date">
+          <input matEndDate formControlName="dataFim" placeholder="End date">
+        </mat-date-range-input>
+        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+    </div>
+  </div>
+</form>
+<mat-divider></mat-divider>
+<div class="box-linha">
+  <div class="box-botoes">
+    <button (click)="fechar(false)"  class="botao-sencudario">
+      CANCELAR
+    </button>
+    <button (click)="fechar(true)" [disabled]="data.novoValorForm.invalid" class="botao-principal">
+      {{data.editar ? 'EDITAR' : 'ADICIONAR'}}
+    </button>
+  </div>
+</div>

@@ -12,6 +12,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [ ],
@@ -29,7 +31,9 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatPaginatorModule,
-    MatButtonModule
+    MatButtonModule,
+    MatNativeDateModule,
+    MatDatepickerModule
   ],
   exports: [
     CommonModule,
@@ -45,7 +49,9 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatPaginatorModule,
-    MatButtonModule
+    MatButtonModule,
+    MatNativeDateModule,
+    MatDatepickerModule
   ],
   providers: [],
   entryComponents: []
