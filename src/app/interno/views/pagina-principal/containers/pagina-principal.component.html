@@ -1,6 +1,6 @@
 <div class="box">
   <div class="box-botao">
-    <button (click)="criarVotacao()" class="botao-principal" mat-raised-button>NOVA VOTAÇÃO</button>
+    <button *ngIf="getRole()" style="margin-right: 0.25rem;" (click)="criarVotacao()" class="botao-principal" mat-raised-button>NOVA VOTAÇÃO</button>
     <button (click)="sair()" class="botao-principal" mat-raised-button>SAIR</button>
   </div>
   <div class="box-abas">

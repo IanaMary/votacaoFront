@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../../services/auth/auth.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -10,25 +10,29 @@ import { MatDialog } from '@angular/material/dialog';
   templateUrl: './pagina-principal.component.html',
   styleUrls: ['./pagina-principal.component.scss']
 })
-export class PaginaPrincipalComponent {
+export class PaginaPrincipalComponent implements OnInit {
   title = 'controleFinanceiro';
 
   novoValorForm: FormGroup;
-  
-  constructor(private readonly route: Router,
-     private readonly auth: AuthService,
-     private readonly formBuilder: FormBuilder,
-     public dialog: MatDialog,) { 
-      this.novoValorForm = this.formBuilder.group({
-        nome: [null, [Validators.required]],
-        descricao: [null, [Validators.required]],
-        dataInicio: [null, [Validators.required]],
-        dataFim: [null, [Validators.required]],
-        candidatos: [[], []],
-      });
-     }
 
-  sair(){
+  constructor(private readonly route: Router,
+    private readonly auth: AuthService,
+    private readonly formBuilder: FormBuilder,
+    public dialog: MatDialog,) {
+    this.novoValorForm = this.formBuilder.group({
+      nome: [null, [Validators.required]],
+      descricao: [null, [Validators.required]],
+      dataInicio: [null, [Validators.required]],
+      dataFim: [null, [Validators.required]],
+      candidatos: [[], []],
+    });
+  }
+
+  ngOnInit() {
+  
+  }
+
+  sair() {
     this.auth.removeLocalStorage().then(() => {
       this.route.navigate(['/autenticacao/login']);
     });
@@ -36,7 +40,7 @@ export class PaginaPrincipalComponent {
 
   criarVotacao(): void {
     const dialogRef = this.dialog.open(NovaVotacaoComponent, {
-      data: { editar: false, novoValorForm: this.novoValorForm},
+      data: { editar: false, novoValorForm: this.novoValorForm },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -57,5 +61,9 @@ export class PaginaPrincipalComponent {
 
       this.novoValorForm.reset();
     });
+  }
+
+  getRole() {
+    return localStorage.getItem('role') === 'admin'
   }
 }
