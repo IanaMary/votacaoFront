@@ -9,7 +9,7 @@
         <app-votacao-aberta></app-votacao-aberta>
       </mat-tab>
       <mat-tab label="VOTAÇÕES ENCERRADAS"></mat-tab>
-      <mat-tab label="VOTAÇÕES CRIAR POR VOCÊ"></mat-tab>
+      <mat-tab *ngIf="getRole()" label="VOTAÇÕES CRIAR POR VOCÊ"></mat-tab>
     </mat-tab-group>
   </div>
 
