@@ -1,8 +1,16 @@
 <div class="filtro">
   <div class="box-filtro">
     <mat-form-field appearance="outline">
+      <mat-label>Status</mat-label>
+      <mat-select [(ngModel)]="status" (selectionChange)="buscarVotacoes()">
+        <mat-option [value]="status.valor" *ngFor="let status of listaStatus">{{status.nome}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="box-filtro">
+    <mat-form-field appearance="outline">
       <mat-label>Escolha o mês</mat-label>
-      <mat-select [(ngModel)]="mesAtual" (selectionChange)="atualizar()">
+      <mat-select [(ngModel)]="mesAtual" (selectionChange)="buscarVotacoes()">
         <mat-option [value]="mes" *ngFor="let mes of meses">{{mes}}</mat-option>
       </mat-select>
     </mat-form-field>
@@ -10,10 +18,13 @@
   <div class="box-filtro">
     <mat-form-field appearance="outline">
       <mat-label>Escolha o ano</mat-label>
-      <mat-select [(ngModel)]="anoAtual" (selectionChange)="atualizar()">
+      <mat-select [(ngModel)]="anoAtual" (selectionChange)="buscarVotacoes()">
         <mat-option [value]="ano" *ngFor="let ano of anos">{{ano}}</mat-option>
       </mat-select>
     </mat-form-field>
+  </div>
+  <div *ngIf="getRole()" class="box-filtro">
+    <mat-slide-toggle [(ngModel)]="votacoesCriadasPorMe" >Votacões criadas por me</mat-slide-toggle>
   </div>
 </div>
 

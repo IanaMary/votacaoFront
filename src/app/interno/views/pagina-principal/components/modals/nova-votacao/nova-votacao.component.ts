@@ -21,7 +21,9 @@ export class NovaVotacaoComponent {
 
  
   fechar(fechar: any){
-    this.dialogRef.close({fechar, data: this.data.novoValorForm.value });
+    this.data.formVotacao.get('candidatos').setValue(this.candidatos);
+    this.candidatos = [];
+    this.dialogRef.close({fechar, data: this.data.formVotacao.value });
   }
 
   adicionarCandidato() {
@@ -33,7 +35,7 @@ export class NovaVotacaoComponent {
     this.candidatoExistente = this.candidatos.some(candidato => candidato.toLowerCase() === this.candidato.toLowerCase());
   }
 
-  removerPilhas(index : number) {
+  removerCandidatos(index : number) {
     this.candidatos.splice(index, 1);
     this.candidatoExistente = this.candidatos.some(candidato => candidato === this.candidato);
   }

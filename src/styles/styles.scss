@@ -11,7 +11,7 @@ body {
 }
 
 ::ng-deep .mat-tab-label {
-  color: $cor-principal !important;
+  color: $cor-principal  !important;
 }
 
 ::ng-deep.mat-tab-label.mat-tab-label-active:not(.mat-tab-disabled),
@@ -74,6 +74,26 @@ body {
 .mat-form-field-appearance-outline .mat-form-field-outline,
 .mat-form-field-underline,
 ::ng-deep .mat-form-field-ripple {
+  color: $cor-principal;
+}
+
+.mat-slide-toggle-bar {
+  border: 1px solid $cor-principal;
+}
+
+.mat-slide-toggle-thumb {
+  background: $cor-principal;
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background: $cor-principal;
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  background-color: $cor-secundaria;
+}
+
+.mat-slide-toggle-content  {
   color: $cor-principal;
 }
 
@@ -149,7 +169,8 @@ body {
   border: none;
   height: 32px;
   margin: 0.25rem;
-  &:disabled{
+
+  &:disabled {
     background: $cor-secundaria-escuro;
     color: $cor-principal-escuro;
   }
@@ -159,6 +180,7 @@ body {
 .botao-icone {
   background-color: transparent;
   border: none;
+
   .mat-icon {
     color: $cor-principal;
   }
@@ -181,7 +203,7 @@ body {
 }
 
 ::ng-deep .mat-icon-button {
-  background: $cor-principal !important;
+  background: $cor-principal  !important;
   margin-bottom: 0.5rem;
 }
 

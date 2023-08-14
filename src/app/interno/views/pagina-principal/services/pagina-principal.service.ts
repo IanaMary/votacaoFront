@@ -9,7 +9,7 @@ export class PaginaPrincipalService {
 
   private readonly endpointContasEntradas: string = 'contasEntradas';
   private readonly endpointContasSaidas: string = 'contasSaidas';
-  private readonly endpointContasResumos: string = 'contasResumos';
+  private readonly endpointVotacao: string = 'votacoes';
   token = localStorage.getItem('authToken');
   obj = {
     access_token: this.token,
@@ -20,6 +20,16 @@ export class PaginaPrincipalService {
   idUsuario = localStorage.getItem('id');
 
   constructor(private http: HttpClient) {}
+
+
+  salvarVotacao(body: any) {
+    return this.http.post(`${this.url}${this.endpointVotacao}`, body, this.httpOptions);
+  }
+
+  listarVotacoes(page: number, limit: number, mes: string, ano: number, status:string) {
+    return this.http.get(`${this.url}${this.endpointVotacao}?page=${page}&limit=${limit}&mes=${mes}&ano=${ano}&status=${status}`, this.httpOptions);
+  }
+  // 
 
   salvarContaEntrada(body: any) {
     return this.http.post(`${this.url}${this.endpointContasEntradas}`, body, this.httpOptions);

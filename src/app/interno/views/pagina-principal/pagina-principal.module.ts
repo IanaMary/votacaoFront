@@ -5,13 +5,13 @@ import { NovoValorComponent } from './components/modals/novo-valor/novo-valor.co
 import { ModalGenericoComponent } from '../../../shared/components/modals/modal-generico/modal-generico.component';
 import { SharedModule } from '../../../shared/shared.module';
 import { CandidatoComponent } from './components/modals/candidato/candidato.component';
-import { VotacaoAbertaComponent } from './components/votacao-aberta/votacao-aberta.component';
 import { NovaVotacaoComponent } from './components/modals/nova-votacao/nova-votacao.component';
+import { VotacaoListaComponent } from './components/votacao-lista/votacao-lista.component';
 
 @NgModule({
   declarations: [
     PaginaPrincipalComponent,
-    VotacaoAbertaComponent,
+    VotacaoListaComponent,
     NovoValorComponent,
     ModalGenericoComponent,
     CandidatoComponent,

@@ -4,13 +4,7 @@
     <button (click)="sair()" class="botao-principal" mat-raised-button>SAIR</button>
   </div>
   <div class="box-abas">
-    <mat-tab-group>
-      <mat-tab label="VOTAÇÕES ABERTAS">
-        <app-votacao-aberta></app-votacao-aberta>
-      </mat-tab>
-      <mat-tab label="VOTAÇÕES ENCERRADAS"></mat-tab>
-      <mat-tab *ngIf="getRole()" label="VOTAÇÕES CRIAR POR VOCÊ"></mat-tab>
-    </mat-tab-group>
+    <app-votacao-lista></app-votacao-lista>
   </div>
 
 </div>
