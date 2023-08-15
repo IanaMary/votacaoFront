@@ -183,6 +183,7 @@ body {
 
   .mat-icon {
     color: $cor-principal;
+
   }
 }
 
@@ -202,15 +203,53 @@ body {
   width: -webkit-fill-available;
 }
 
-::ng-deep .mat-icon-button {
-  background: $cor-principal  !important;
-  margin-bottom: 0.5rem;
+.mat-icon-button .mat-button-wrapper>* {
+  height: 1rem;
 }
 
-::ng-deep .mat-form-field-type-mat-date-range-input .mat-form-field-infix {
-  width: 100%;
+.mat-icon-button {
+  background: $cor-principal;
+  display: inline-flex !important;
+    align-items: center !important;
+  // margin-bottom: 0.5rem;
+  height: 25px !important;
+  width: 25px !important;
+  // display: inline-flex;
+  // align-items: center;
+  // flex-wrap: nowrap;
+  // flex-direction: row;
+  // justify-content: center;
+  // margin: 0;
+}
+
+.mat-form-field-type-mat-date-range-input .mat-form-field-infix {
+  // width: 100%;
+  // display: flex;
+  // justify-content: flex-end;
+  // align-items: center;
+  // height: 1rem;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-infix {
+  // height: 1rem;
+}
+
+.mat-input-element{
+  width: 140px;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 0;
+  height: 2.5rem;
   display: flex;
-  justify-content: flex-end;
   align-items: center;
-  height: 1rem;
+  align-content: center;
+  margin: 0 !important;
+}
+
+::ng-deep .mat-select-trigger {
+  margin: 0;
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
 }

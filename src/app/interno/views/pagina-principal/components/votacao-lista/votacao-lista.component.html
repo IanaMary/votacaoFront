@@ -9,18 +9,28 @@
   </div>
   <div class="box-filtro">
     <mat-form-field appearance="outline">
-      <mat-label>Escolha o mês</mat-label>
-      <mat-select [(ngModel)]="mesAtual" (selectionChange)="buscarVotacoes()">
-        <mat-option [value]="mes" *ngFor="let mes of meses">{{mes}}</mat-option>
-      </mat-select>
+      <mat-label>Data de início</mat-label>
+      <input readonly  [(ngModel)]="dataInicio" matInput [matDatepicker]="datepickerDataInicio">
+      <mat-datepicker-toggle matIconSuffix [for]="datepickerDataInicio"></mat-datepicker-toggle>
+      <mat-datepicker #datepickerDataInicio>
+        <mat-datepicker-actions>
+          <button mat-button matDatepickerCancel>Cancel</button>
+          <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+        </mat-datepicker-actions>
+      </mat-datepicker>
     </mat-form-field>
   </div>
   <div class="box-filtro">
     <mat-form-field appearance="outline">
-      <mat-label>Escolha o ano</mat-label>
-      <mat-select [(ngModel)]="anoAtual" (selectionChange)="buscarVotacoes()">
-        <mat-option [value]="ano" *ngFor="let ano of anos">{{ano}}</mat-option>
-      </mat-select>
+      <mat-label>Data fim</mat-label>
+      <input readonly [(ngModel)]="dataFim" matInput [matDatepicker]="datepickerDataFim">
+      <mat-datepicker-toggle matIconSuffix [for]="datepickerDataFim"></mat-datepicker-toggle>
+      <mat-datepicker #datepickerDataFim>
+        <mat-datepicker-actions>
+          <button mat-button matDatepickerCancel>Cancel</button>
+          <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+        </mat-datepicker-actions>
+      </mat-datepicker>
     </mat-form-field>
   </div>
   <div *ngIf="getRole()" class="box-filtro">

@@ -26,8 +26,8 @@ export class PaginaPrincipalService {
     return this.http.post(`${this.url}${this.endpointVotacao}`, body, this.httpOptions);
   }
 
-  listarVotacoes(page: number, limit: number, mes: string, ano: number, status:string) {
-    return this.http.get(`${this.url}${this.endpointVotacao}?page=${page}&limit=${limit}&mes=${mes}&ano=${ano}&status=${status}`, this.httpOptions);
+  listarVotacoes(page: number, limit: number, dataInicio: Date, dataFim: Date, status:string) {
+    return this.http.get(`${this.url}${this.endpointVotacao}?page=${page}&limit=${limit}&dataInicio=${dataInicio}&dataFim=${dataFim}&status=${status}`, this.httpOptions);
   }
   // 
 

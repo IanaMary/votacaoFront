@@ -59,21 +59,6 @@ export class VotacaoListaComponent implements OnInit {
 
   ]
 
-  meses = [
-    'JAN',
-    'FEV',
-    'MAR',
-    'ABR',
-    'MAI',
-    'JUN',
-    'JUL',
-    'AGO',
-    'SET',
-    'OUT',
-    'NOV',
-    'DEZ',
-  ];
-
   listaStatus = [
     {
       nome: 'Nova',
@@ -88,12 +73,8 @@ export class VotacaoListaComponent implements OnInit {
   ]
   status = '';
   votacoesCriadasPorMe = false;
-  mesAtual = this.meses[new Date().getMonth()];
-  anoAtual = new Date().getFullYear();
-  anos = Array(10)
-    .fill(0)
-    .map((e, i) => this.anoAtual + i);
-
+  dataInicio = new Date();
+  dataFim = new Date();
 
 
   pagina = 1;
@@ -111,7 +92,7 @@ export class VotacaoListaComponent implements OnInit {
   }
 
   buscarVotacoes() {
-    this.paginaPrincipalService.listarVotacoes(this.pagina, this.limite, this.mesAtual, this.anoAtual, this.status).subscribe(
+    this.paginaPrincipalService.listarVotacoes(this.pagina, this.limite, this.dataInicio, this.dataFim, this.status).subscribe(
       (res: any) => {
         this.votacoes = res;
       },
