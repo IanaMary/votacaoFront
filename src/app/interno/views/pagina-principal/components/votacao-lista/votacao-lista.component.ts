@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalGenericoComponent } from '../../../../../shared/components/modals/modal-generico/modal-generico.component';
 import { PaginaPrincipalService } from '../../services/pagina-principal.service';
-import { NovoValorComponent } from '../modals/novo-valor/novo-valor.component';
 import { CandidatoComponent } from '../modals/candidato/candidato.component';
 
 @Component({
@@ -11,53 +10,11 @@ import { CandidatoComponent } from '../modals/candidato/candidato.component';
   templateUrl: './votacao-lista.component.html',
   styleUrls: ['./votacao-lista.component.scss'],
 })
-export class VotacaoListaComponent implements OnInit {
+export class VotacaoListaComponent implements OnChanges {
 
-  votacoes = [
-    {
-      titulo: 'Votação conselho',
-      descricao: 'Pode votar',
-      dataIniico: new Date(),
-      dataFim: new Date(),
-      status: 'andamento',
-      multiVotos: true,
-      votou: true,
-      criado: 'Joao',
-    },
-    {
-      titulo: 'Votação presidente',
-      descricao: 'não pode votar',
-      dataIniico: new Date(),
-      dataFim: new Date(),
-      status: 'andamento',
-      multiVotos: false,
-      votou: true,
-      criado: 'Joao',
-    },
-    {
-      titulo: 'Votação prefeitura',
-      descricao: 'Pode votar',
-      dataIniico: new Date(),
-      dataFim: new Date(),
-      status: 'andamento',
-      multiVotos: true,
-      votou: false,
-      criado: 'Joao',
-    },
-    {
-      titulo: 'Votação prefeitura',
-      descricao: 'Pode votar',
-      dataIniico: new Date(),
-      dataFim: new Date(),
-      status: 'andamento',
-      multiVotos: true,
-      votou: false,
-      criado: 'Joao',
-    },
+  @Input() atualizarVotacoes = false;
 
-
-
-  ]
+  votacoes : any = {}
 
   listaStatus = [
     {
@@ -87,8 +44,10 @@ export class VotacaoListaComponent implements OnInit {
     private readonly paginaPrincipalService: PaginaPrincipalService
   ) {}
 
-  ngOnInit() {
-   this.buscarVotacoes();
+  ngOnChanges() {
+    if(this.atualizarVotacoes) {
+      this.buscarVotacoes();
+    }
   }
 
   buscarVotacoes() {
@@ -112,7 +71,19 @@ export class VotacaoListaComponent implements OnInit {
       data: { votacao, votar },
     });
 
-    dialogRef.afterClosed().subscribe((result) => {});
+    dialogRef.afterClosed().subscribe((result) => {
+      if(result.votou) {
+        const voto = {
+          idVotacao: result.idVotacao,
+          idCandidato: result.idCandidato,
+        };
+        this.paginaPrincipalService.salvarVoto(voto).subscribe(
+          (res: any) => {
+          },
+          (error: any) => { }
+        );
+      }
+    });
   }
 
   getRole() {

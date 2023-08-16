@@ -57,7 +57,6 @@ export class LoginComponent  {
   }
 
   criarNovoUsuario() {
-    console.log("sss")
     this.router.navigate(['/autenticacao/login/cadastro-usuario']);
   }
 }

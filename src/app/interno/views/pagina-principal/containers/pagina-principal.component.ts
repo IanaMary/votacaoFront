@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NovaVotacaoComponent } from '../components/modals/nova-votacao/nova-votacao.component';
 import { MatDialog } from '@angular/material/dialog';
 import { PaginaPrincipalService } from '../services/pagina-principal.service';
+import { NovoCandidatoComponent } from '../components/modals/novo-candidato/novo-candidato.component';
 
 @Component({
   selector: 'app-pagina-principal',
@@ -27,11 +28,14 @@ export class PaginaPrincipalComponent implements OnInit {
       dataInicio: [null, [Validators.required]],
       dataFim: [null, [Validators.required]],
       candidatos: [[], []],
+      multiVotos: [false, [Validators.required]],
     });
   }
 
+  atualizarVotacoes = false;
+
   ngOnInit() {
-  
+    this.atualizarVotacoes = true;
   }
 
   sair() {
@@ -42,6 +46,7 @@ export class PaginaPrincipalComponent implements OnInit {
 
   criarVotacao(): void {
     const dialogRef = this.dialog.open(NovaVotacaoComponent, {
+      width: '400px',
       data: { editar: false, formVotacao: this.formVotacao },
     });
 
@@ -53,16 +58,34 @@ export class PaginaPrincipalComponent implements OnInit {
           dataInicio: result.data.dataInicio,
           dataFim: result.data.dataFim,
           candidatos: result.data.candidatos,
+          multiVotos:  result.data.multiVotos,
         };
         this.paginaPrincipalService.salvarVotacao(votacao).subscribe(
           (res: any) => {
-            console.log("res ", res)
           },
           (error: any) => { }
         );
       }
 
       this.formVotacao.reset();
+    });
+  }
+
+  criarCandidato(): void {
+    const dialogRef = this.dialog.open(NovoCandidatoComponent, {
+      width: '400px',
+      data: { editar: false, candidatos: [] },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result.fechar) {
+        const candidato = result.candidatos[0];
+        this.paginaPrincipalService.salvarCandidato(candidato).subscribe(
+          (res: any) => {
+          },
+          (error: any) => { }
+        );
+      }
     });
   }
 

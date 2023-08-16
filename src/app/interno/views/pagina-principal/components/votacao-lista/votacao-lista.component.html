@@ -39,9 +39,9 @@
 </div>
 
 <div class="box-linha" >
-  <div class="box-coluna" *ngFor="let votacao of votacoes;">
+  <div class="box-coluna" *ngFor="let votacao of votacoes?.rows;">
     <div class="titulo">
-      {{votacao?.titulo}}
+      {{votacao?.nome}}
     </div>
     <mat-divider></mat-divider>
     <div class="informacoes">
@@ -52,7 +52,7 @@
         <span class="valor"> {{votacao?.criado }}</span>
       </span>
       <span class="gasto"> Inicio:
-        <span class="valor"> {{votacao?.dataIniico | date: 'dd/MM/yyyy'}}</span>
+        <span class="valor"> {{votacao?.dataInicio | date: 'dd/MM/yyyy'}}</span>
       </span>
       <span class="gasto"> Fim:
         <span class="valor"> {{votacao?.dataFim| date: 'dd/MM/yyyy'}}</span>

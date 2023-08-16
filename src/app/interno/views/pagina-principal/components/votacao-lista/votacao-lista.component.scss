@@ -85,12 +85,22 @@
 }
 
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
   .box-linha {
     display: flex;
     flex-direction: column;
     width: 100%;
     .box-coluna {
+      width: 100%;
+    }
+  }
+  .filtro {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    .box-filtro  {
+      display: flex;
+      align-items: flex-start;
       width: 100%;
     }
   }

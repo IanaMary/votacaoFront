@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { PaginaPrincipalService } from '../../../services/pagina-principal.service';
 
 
 @Component({
@@ -10,18 +11,32 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 export class CandidatoComponent {
   constructor(
+    private readonly paginaPrincipalService: PaginaPrincipalService,
     public dialogRef: MatDialogRef<CandidatoComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {}
 
-  candidatos = [{ nome: "Wagner", numero: 1, id: '1' },
-  { nome: "Luiz", numero: 2, id: '2' },
-  { nome: "Braga", numero: 3, id: '3' },
-  { nome: "Bezerra", numero: 4, id: '4' }];
+  candidatos : Array<any> =  [];
 
-  valor = 0
+  pagina = 1;
+  pagOpcoes: number[] = [5, 10, 15, 20];
+  limite = 5;
+  votou : any;
 
-  fechar(candidato : any, votar : boolean){
-    this.dialogRef.close();
+  fechar(candidato : any, votou : boolean){
+    this.dialogRef.close({idCandidato: candidato?.id, idVotacao: this.data.votacao.id, votou});
+  }
+
+  ngOnInit() {
+    this.buscarCandidatos();
+   }
+
+  buscarCandidatos() {
+    this.paginaPrincipalService.listarCandidatos(this.pagina, this.limite, this.data.votacao.id).subscribe(
+      (res: any) => {
+        this.candidatos = res.rows;
+      },
+      (error: any) => { }
+    );
   }
 }

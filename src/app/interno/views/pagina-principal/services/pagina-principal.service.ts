@@ -7,9 +7,9 @@ import { environment } from '../../../../../environments/environment';
 export class PaginaPrincipalService {
   url = environment.apiUrl;
 
-  private readonly endpointContasEntradas: string = 'contasEntradas';
-  private readonly endpointContasSaidas: string = 'contasSaidas';
   private readonly endpointVotacao: string = 'votacoes';
+  private readonly endpointCandidatos: string = 'candidatos';
+  private readonly endpointVotos: string = 'votos';
   token = localStorage.getItem('authToken');
   obj = {
     access_token: this.token,
@@ -22,6 +22,8 @@ export class PaginaPrincipalService {
   constructor(private http: HttpClient) {}
 
 
+  // VOTAÇÃO
+
   salvarVotacao(body: any) {
     return this.http.post(`${this.url}${this.endpointVotacao}`, body, this.httpOptions);
   }
@@ -29,49 +31,29 @@ export class PaginaPrincipalService {
   listarVotacoes(page: number, limit: number, dataInicio: Date, dataFim: Date, status:string) {
     return this.http.get(`${this.url}${this.endpointVotacao}?page=${page}&limit=${limit}&dataInicio=${dataInicio}&dataFim=${dataFim}&status=${status}`, this.httpOptions);
   }
-  // 
 
-  salvarContaEntrada(body: any) {
-    return this.http.post(`${this.url}${this.endpointContasEntradas}`, body, this.httpOptions);
+  // CANDIDATOS
+
+  salvarCandidato(body: any) {
+    return this.http.post(`${this.url}${this.endpointCandidatos}`, body, this.httpOptions);
   }
 
-  salvarContaSaida(body: any) {
-    return this.http.post(`${this.url}${this.endpointContasSaidas}`, body, this.httpOptions);
+  listarCandidatos(page: number, limit: number, idVotacao?: string) {
+    if(idVotacao) {
+      return this.http.get(`${this.url}${this.endpointCandidatos}?page=${page}&limit=${limit}&idVotacao=${idVotacao}`, this.httpOptions);
+    } else{
+      return this.http.get(`${this.url}${this.endpointCandidatos}?page=${page}&limit=${limit}`, this.httpOptions);
+    }
+    
   }
 
-  listarContaEntrada(page: number, limit: number, mes: string, ano: number) {
-    return this.http.get(`${this.url}${this.endpointContasEntradas}?page=${page}&limit=${limit}&mes=${mes}&ano=${ano}&user=${this.idUsuario}`, this.httpOptions);
+
+  // VOTOS
+
+  salvarVoto(body: any) {
+    return this.http.post(`${this.url}${this.endpointVotos}`, body, this.httpOptions);
   }
 
-  listarContaSaida(page: number, limit: number, mes: string, ano: number) {
-    return this.http.get(`${this.url}${this.endpointContasSaidas}?page=${page}&limit=${limit}&mes=${mes}&ano=${ano}&user=${this.idUsuario}`, this.httpOptions);
-  }
 
-  excluirEntrada(id: any) {
-    return this.http.delete(`${this.url}${this.endpointContasEntradas}/${id}`, this.httpOptions);
-  }
 
-  excluirSaida(id: any) {
-    return this.http.delete(`${this.url}${this.endpointContasSaidas}/${id}`, this.httpOptions);
-  }
-
-  editarContaEntrada(id: any, body: any) {
-    return this.http.put(`${this.url}${this.endpointContasEntradas}/${id}`, body, this.httpOptions);
-  }
-
-  editarContaSaida(id: any, body: any) {
-    return this.http.put(`${this.url}${this.endpointContasSaidas}/${id}`, body, this.httpOptions);
-  }
-
-  totalResumo(mes : string, ano : number) {
-    return this.http.get(`${this.url}${this.endpointContasSaidas}/totalResumo?mes=${mes}&ano=${ano}`, this.httpOptions);
-  }
-
-  totalResumoMensal(ano : number) {
-    return this.http.get(`${this.url}${this.endpointContasSaidas}/totalResumoMensal?ano=${ano}`, this.httpOptions);
-  }
-
-  totalResumoAnual(pagina: number, limite: number) {
-    return this.http.get(`${this.url}${this.endpointContasSaidas}/totalResumoAnual?page=${pagina}&limit=${limite}`, this.httpOptions);
-  }
 }

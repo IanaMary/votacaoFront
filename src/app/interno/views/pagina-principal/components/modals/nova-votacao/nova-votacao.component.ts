@@ -1,5 +1,6 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { PaginaPrincipalService } from '../../../services/pagina-principal.service';
 
 
 @Component({
@@ -8,35 +9,38 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./nova-votacao.component.scss']
 })
 
-export class NovaVotacaoComponent {
+export class NovaVotacaoComponent implements OnInit  {
   constructor(
     public dialogRef: MatDialogRef<NovaVotacaoComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private readonly paginaPrincipalService: PaginaPrincipalService,
   ) {}
 
-  candidato : string = '';
-  candidatos : Array<string> =  [];
-  candidatoExistente : boolean = false;
-  valor = 0
+  candidatos : Array<any> =  [];
+  candidatosS : Array<any> =  [];
+  
+
+  pagina = 1;
+  pagOpcoes: number[] = [5, 10, 15, 20];
+  limite = 5;
 
  
   fechar(fechar: any){
-    this.data.formVotacao.get('candidatos').setValue(this.candidatos);
-    this.candidatos = [];
     this.dialogRef.close({fechar, data: this.data.formVotacao.value });
   }
 
-  adicionarCandidato() {
-    this.candidatos.push(this.candidato);
-    this.candidato = '';
+  ngOnInit() {
+    this.buscarCandidatos();
+   }
+
+  buscarCandidatos() {
+    this.paginaPrincipalService.listarCandidatos(this.pagina, this.limite).subscribe(
+      (res: any) => {
+        this.candidatos = res.rows;
+      },
+      (error: any) => { }
+    );
   }
 
-  jaExisteCandidatos(){
-    this.candidatoExistente = this.candidatos.some(candidato => candidato.toLowerCase() === this.candidato.toLowerCase());
-  }
-
-  removerCandidatos(index : number) {
-    this.candidatos.splice(index, 1);
-    this.candidatoExistente = this.candidatos.some(candidato => candidato === this.candidato);
-  }
+ 
 }

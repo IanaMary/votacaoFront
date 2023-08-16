@@ -7,20 +7,21 @@
 <mat-divider></mat-divider>
 <form [formGroup]="data?.formVotacao">
   <div class="box-linha">
-    <div class="box-coluna box-coluna-49">
+    <div class="box-coluna  box-coluna-45">
       <mat-form-field appearance="outline">
         <mat-label>Nome</mat-label>
         <input [(ngModel)]="data?.formVotacao?.value.nome" formControlName="nome" matInput>
       </mat-form-field>
     </div>
-    <div class="box-coluna box-coluna-49">
+    <div class="box-coluna box-coluna-45">
+      <mat-slide-toggle formControlName="multiVotos">Multiplos Votos</mat-slide-toggle>
+    </div>
+    <div class="box-coluna">
       <mat-form-field appearance="outline">
         <mat-label>Descrição</mat-label>
         <input [(ngModel)]="data?.formVotacao?.value.descricao" formControlName="descricao" matInput>
       </mat-form-field>
     </div>
-  </div>
-  <div class="box-linha">
     <div class="box-coluna">
       <mat-form-field appearance="outline">
         <mat-label>Período</mat-label>
@@ -33,33 +34,14 @@
         <mat-date-range-picker #picker></mat-date-range-picker>
       </mat-form-field>
     </div>
-  </div>
-  <div class="box-linha">
-    <div class="box-coluna box-coluna-80">
+
+    <div class="box-coluna">
       <mat-form-field appearance="outline">
-        <mat-label>Candidato</mat-label>
-        <input (keyup)="jaExisteCandidatos()" [(ngModel)]="candidato" [ngModelOptions]="{standalone: true}" matInput>
-        <mat-icon *ngI="candidatoExistente" style="margin-right: 0.2rem;" matSuffix>error</mat-icon>
+        <mat-label> Candidatos</mat-label>
+        <mat-select formControlName="candidatos" multiple>
+          <mat-option *ngFor="let candidato of candidatos" [value]="candidato.id">{{candidato.nome}}</mat-option>
+        </mat-select>
       </mat-form-field>
-    </div>
-    <div class="box-coluna box-coluna-10">
-      <button (click)="adicionarCandidato()" [disabled]="!candidato || candidatoExistente" class="botao-principal">
-        <mat-icon>add_box</mat-icon>
-      </button>
-    </div>
-  </div>
-  <mat-divider></mat-divider>
-  <div class="box-linha">
-    <div class="box-coluna titulo-secundario-modal">
-      Candidos adicionados:
-    </div>
-    <div class="box-linha box-linha-candidatos">
-      <div class="box-coluna box-coluna-49" *ngFor="let candidato of candidatos; let index = index;">
-        <button (click)="removerCandidatos(index)" [disabled]="!candidato && candidatoExistente" class="botao-sencudario">
-          {{candidato}}
-          <mat-icon>close</mat-icon>
-        </button>
-      </div>
     </div>
   </div>
 </form>

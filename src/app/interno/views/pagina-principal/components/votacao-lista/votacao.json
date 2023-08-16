@@ -1,0 +1,14 @@
+{
+    "votacoes": [
+        {
+            "titulo": "Votação conselho",
+            "descricao": "Pode votar",
+            "dataIniico": "10/07",
+            "dataFim": "10/07",
+            "status": "andamento",
+            "multiVotos": true,
+            "votou": true,
+            "criado": "Joao"
+        }
+    ]
+}

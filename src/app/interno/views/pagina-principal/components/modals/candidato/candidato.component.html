@@ -1,5 +1,5 @@
 <div class="box-linha box-titulo">
-  {{data?.votacao?.titulo}}
+  {{data?.votacao?.nome}}
   <button class="botao-icone">
     <mat-icon (click)="fechar(null, false)">cancel</mat-icon>
   </button>
@@ -10,10 +10,8 @@
     <span>
       Nome: <span class="informacoes">{{candidato?.nome }}</span>
     </span>
-    <span>
-      Número: <span class="informacoes">{{candidato?.numero }}</span>
-    </span>
-    <button *ngIf="data.votar" (click)="fechar(candidato, true)" class="botao-principal">
+    <button *ngIf="data.votar"
+      (click)="fechar(candidato, true)" class="botao-principal">
       VOTAR
     </button>
   </div>
