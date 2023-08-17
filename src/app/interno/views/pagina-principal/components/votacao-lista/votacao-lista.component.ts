@@ -53,6 +53,7 @@ export class VotacaoListaComponent implements OnChanges {
   buscarVotacoes() {
     this.paginaPrincipalService.listarVotacoes(this.pagina, this.limite, this.dataInicio, this.dataFim, this.status).subscribe(
       (res: any) => {
+        console.log("eeee ", res)
         this.votacoes = res;
       },
       (error: any) => { }

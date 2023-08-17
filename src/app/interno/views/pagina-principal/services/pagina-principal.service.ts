@@ -35,16 +35,11 @@ export class PaginaPrincipalService {
   // CANDIDATOS
 
   salvarCandidato(body: any) {
-    return this.http.post(`${this.url}${this.endpointCandidatos}`, body, this.httpOptions);
+    return this.http.post(`${this.url}${this.endpointCandidatos}/many`, body, this.httpOptions);
   }
 
-  listarCandidatos(page: number, limit: number, idVotacao?: string) {
-    if(idVotacao) {
-      return this.http.get(`${this.url}${this.endpointCandidatos}?page=${page}&limit=${limit}&idVotacao=${idVotacao}`, this.httpOptions);
-    } else{
-      return this.http.get(`${this.url}${this.endpointCandidatos}?page=${page}&limit=${limit}`, this.httpOptions);
-    }
-    
+  listarCandidatos(page: number, limit: number) {
+    return this.http.get(`${this.url}${this.endpointCandidatos}?page=${page}&limit=${limit}`, this.httpOptions); 
   }
 
 

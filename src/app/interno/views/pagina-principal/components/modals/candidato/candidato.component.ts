@@ -27,16 +27,7 @@ export class CandidatoComponent {
     this.dialogRef.close({idCandidato: candidato?.id, idVotacao: this.data.votacao.id, votou});
   }
 
-  ngOnInit() {
-    this.buscarCandidatos();
-   }
+  ngOnInit() {}
 
-  buscarCandidatos() {
-    this.paginaPrincipalService.listarCandidatos(this.pagina, this.limite, this.data.votacao.id).subscribe(
-      (res: any) => {
-        this.candidatos = res.rows;
-      },
-      (error: any) => { }
-    );
-  }
+ 
 }

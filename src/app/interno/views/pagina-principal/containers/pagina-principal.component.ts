@@ -79,7 +79,7 @@ export class PaginaPrincipalComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result.fechar) {
-        const candidato = result.candidatos[0];
+        const candidato = [{nome: 'teste'}, {nome: 'teste 1'}];
         this.paginaPrincipalService.salvarCandidato(candidato).subscribe(
           (res: any) => {
           },
